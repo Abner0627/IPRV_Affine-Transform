@@ -6,6 +6,7 @@
 #    Nov 13, 2021 02:45:23 PM CST  platform: Windows NT
 #    Nov 13, 2021 03:44:24 PM CST  platform: Windows NT
 #    Nov 13, 2021 03:46:10 PM CST  platform: Windows NT
+#    Nov 13, 2021 06:01:09 PM CST  platform: Windows NT
 
 import sys
 import os
@@ -51,13 +52,15 @@ def onBtnModifyClick_1():
     func._PlotPos(img, text_get)
 
 def onBtnModifyClick_2():
+    global src
     global res
+    global dst
     if w.TEntry2.get() =='':
         dst = np.array([[65, 90], [95, 90], [80, 120]], np.float)
         H, W = 160, 190
     else:
         dst, H, W = func._ProcInput(w.TEntry2.get())
-    res = func._Trans(img, text_get, dst, H, W)
+    src, res = func._Trans(img, text_get, dst, H, W)
     fig = plt.figure()
     plt.imshow(res)
     plt.show()    
@@ -67,6 +70,13 @@ def onBtnModifyClick_3():
     cv2.imwrite(os.path.join('./result', 'result_' + fn), cv2.cvtColor(res_, cv2.COLOR_RGB2BGR))
     print('Saved')
 
+def onBtnModifyClick_4():
+    inv = func._Inv(dst, src, img, res)
+    inv_ = inv.astype(np.float32)
+    cv2.imwrite(os.path.join('./result', 'inv_result_' + fn), cv2.cvtColor(inv_, cv2.COLOR_RGB2BGR))
+    fig = plt.figure()
+    plt.imshow(inv)
+    plt.show() 
 
 def destroy_window():
     # Function which closes the window.

@@ -35,7 +35,7 @@ def _Warp(img, M_, WH):
 def _PlotPos(img, idx):
     img_c = np.copy(img)
     src = np.load('src_pos_' + idx + '.npy').astype(float)
-    cv2.polylines(img_c, [src.astype(int)], True, (255, 255, 0), 1)
+    cv2.polylines(img_c, [src.astype(int)], True, (255, 0, 0), 2)
     # fig = plt.figure()
     plt.imshow(img_c)
     plt.show()
@@ -66,7 +66,13 @@ def _Trans(img, idx, dst, H, W):
     src = np.load('src_pos_' + idx + '.npy').astype(float)
     M = _AffineMatrix(src, dst)
     res = _Warp(img, M, (H, W))
-    return res
+    return src, res
+
+def _Inv(dst, src, img, res):
+    M_inv = _AffineMatrix(dst, src)
+    W_org, H_org, _ = img.shape
+    inv = cv2.warpAffine(res.astype(np.uint8), M_inv[:-1,:], (H_org, W_org))
+    return inv
 
 
 
