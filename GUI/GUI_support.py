@@ -12,6 +12,7 @@ import os
 import func
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 
 try:
     import Tkinter as tk
@@ -34,28 +35,38 @@ def init(top, gui, *args, **kwargs):
 def onBtnModifyClick_1():
     # print('GUI_support.onBtnModifyClick_1')
     # sys.stdout.flush()
+    global img
+    global text_get
+    global fn
     img_list = os.listdir('./img')
     text_get = w.TEntry1.get()
-    img_P = os.path.join('./img', img_list[int(text_get)])
+    fn = img_list[int(text_get)]
+    img_P = os.path.join('./img', fn)
     img_org = cv2.imread(img_P)    # bgr
     img = cv2.cvtColor(img_org, cv2.COLOR_BGR2RGB)
+    
+
     # pos
     func._Pos(img, text_get)
     func._PlotPos(img, text_get)
 
 def onBtnModifyClick_2():
+    global res
     if w.TEntry2.get() =='':
         dst = np.array([[65, 90], [95, 90], [80, 120]], np.float)
         H, W = 160, 190
     else:
         dst, H, W = func._ProcInput(w.TEntry2.get())
-    func._Trans(img, idx, dst, H, W)
-
-    
+    res = func._Trans(img, text_get, dst, H, W)
+    fig = plt.figure()
+    plt.imshow(res)
+    plt.show()    
 
 def onBtnModifyClick_3():
-    print('GUI_support.onBtnModifyClick_3')
-    sys.stdout.flush()
+    res_ = res.astype(np.float32)
+    cv2.imwrite(os.path.join('./result', 'result_' + fn), cv2.cvtColor(res_, cv2.COLOR_RGB2BGR))
+    print('Saved')
+
 
 def destroy_window():
     # Function which closes the window.

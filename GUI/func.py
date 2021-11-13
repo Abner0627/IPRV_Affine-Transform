@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import warnings
+import os 
 
 # %% [markdown]
 # ## Func
@@ -29,6 +30,7 @@ def _Warp(img, M_, WH):
                 dst_img[dst_y, dst_x, c] = img[src_v, src_u, c]
     dst_img = dst_img.astype(int)  
     return dst_img  
+
 
 def _PlotPos(img, idx):
     img_c = np.copy(img)
@@ -64,8 +66,8 @@ def _Trans(img, idx, dst, H, W):
     src = np.load('src_pos_' + idx + '.npy').astype(float)
     M = _AffineMatrix(src, dst)
     res = _Warp(img, M, (H, W))
-    plt.imshow(res) 
-    plt.show()
+    return res
+
 
 
 
