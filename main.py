@@ -50,7 +50,7 @@ plt.imshow(img)
 
 # %%
 img_c = np.copy(img)
-src = np.array([[276, 173], [317, 179], [285, 226]], np.float32)  # eye_L, eye_R, nose
+src = np.array([[276, 173], [317, 179], [285, 226]], np.float)  # eye_L, eye_R, nose
 cv2.polylines(img_c, [src.astype(int)], True, (255, 255, 0), 1)
 
 fig = plt.figure()
@@ -60,7 +60,7 @@ plt.imshow(img_c)
 # ## dst
 
 # %%
-dst = np.array([[65, 90], [95, 90], [80, 120]],  np.float32)
+dst = np.array([[65, 90], [95, 90], [80, 120]],  np.float)
 M = _AffineMatrix(src, dst)
 res = _Warp(img, M, (160, 190))
 

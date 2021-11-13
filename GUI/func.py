@@ -2,6 +2,7 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
+import warnings
 
 # %% [markdown]
 # ## Func
@@ -50,6 +51,22 @@ def _Pos(img, idx):
     fig.canvas.mpl_connect('button_press_event', on_press)
     plt.show() 
 
+def _ProcInput(in_str):
+    warnings.warn("Wrong input format")
+    B = in_str.split('_')
+    C = [i.replace("(","") for i in B]
+    D = [i.replace(")","") for i in C]
+    E = [i.split(', ') for i in D]
+    F = np.array(E).astype(float)
+    return F[:2, :], F[3, 0], F[3, 1]
+
+def _Trans(img, idx, dst, H, W):
+    src = np.load('src_pos_' + idx + '.npy').astype(float)
+    M = _AffineMatrix(src, dst)
+    res = _Warp(img, M, (H, W))
+    plt.imshow(res) 
+    plt.show()
+
 
 
 # # %% [markdown]
@@ -76,3 +93,5 @@ def _Pos(img, idx):
 
 
 
+
+# %%

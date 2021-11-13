@@ -11,6 +11,7 @@ import sys
 import os
 import func
 import cv2
+import numpy as np
 
 try:
     import Tkinter as tk
@@ -30,10 +31,6 @@ def init(top, gui, *args, **kwargs):
     top_level = top
     root = top
 
-def onBtnModifyClick_2():
-    print('GUI_support.onBtnModifyClick_2')
-    sys.stdout.flush()
-
 def onBtnModifyClick_1():
     # print('GUI_support.onBtnModifyClick_1')
     # sys.stdout.flush()
@@ -46,6 +43,15 @@ def onBtnModifyClick_1():
     func._Pos(img, text_get)
     func._PlotPos(img, text_get)
 
+def onBtnModifyClick_2():
+    if w.TEntry2.get() =='':
+        dst = np.array([[65, 90], [95, 90], [80, 120]], np.float)
+        H, W = 160, 190
+    else:
+        dst, H, W = func._ProcInput(w.TEntry2.get())
+    func._Trans(img, idx, dst, H, W)
+
+    
 
 def onBtnModifyClick_3():
     print('GUI_support.onBtnModifyClick_3')
