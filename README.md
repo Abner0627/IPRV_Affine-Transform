@@ -134,6 +134,8 @@ def _AffineMatrix(src, dst):
     # M = DS^T(SS^T)^-1
     return M_
 ```
+各矩陣排列方式如下：
+![Imgur](https://i.imgur.com/r44CcWJ.png)
 
 ### Apply Affine Transform with Affine Matrix
 ```py
