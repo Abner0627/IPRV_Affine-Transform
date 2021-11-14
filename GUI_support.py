@@ -40,16 +40,22 @@ def onBtnModifyClick_1():
     global text_get
     global fn
     img_list = os.listdir('./img')
+    # 取得./img中影像列表
     text_get = w.TEntry1.get()
+    # 取得GUI輸入(此處為影像編號)
     fn = img_list[int(text_get)]
+    # 選取影像之檔名
     img_P = os.path.join('./img', fn)
     img_org = cv2.imread(img_P)    # bgr
+    # 加載影像
     img = cv2.cvtColor(img_org, cv2.COLOR_BGR2RGB)
-    
-
+    # 從BGR轉至RGB
     # pos
     func._Pos(img, text_get)
+    # 生成影像用以供使用者標記目標點
     func._PlotPos(img, text_get)
+    # 畫上選取範圍
+
 
 def onBtnModifyClick_2():
     global src
@@ -68,6 +74,7 @@ def onBtnModifyClick_2():
 def onBtnModifyClick_3():
     res_ = res.astype(np.float32)
     cv2.imwrite(os.path.join('./result', 'result_' + fn), cv2.cvtColor(res_, cv2.COLOR_RGB2BGR))
+    # 將結果轉回BGR使用cv2儲存
     print('Saved')
 
 def onBtnModifyClick_4():
