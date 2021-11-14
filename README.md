@@ -183,10 +183,10 @@ cv2.imwrite(os.path.join('./result', 'result_' + fn), cv2.cvtColor(res_, cv2.COL
 ## 轉換結果展示
 2018043072138985.jpg
 ![Imgur](https://i.imgur.com/X7ZoIl0.jpg)
-![Imgur](https://i.imgur.com/BrWQln1.jpg)
+![Imgur](https://i.imgur.com/BrWQln1.jpg)\
 tom-cruise-vanessa-kirby-mission-impossible-fallout-1564649325.bmp
 ![Imgur](https://i.imgur.com/OvLf4Xl.png)
-![Imgur](https://i.imgur.com/rbuPHSn.png)
+![Imgur](https://i.imgur.com/rbuPHSn.png)\
 TomHanksApr09.jpg
 ![Imgur](https://i.imgur.com/7H2w2sj.jpg)
 ![Imgur](https://i.imgur.com/eSiUeAA.jpg)
