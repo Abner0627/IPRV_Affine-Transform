@@ -167,10 +167,11 @@ def _Warp(img, M_, WH):
             # 取得在矩陣D與S中成對的座標(d_x, d_y), (s_u, s_v)
             if 0<=dst_x<H and 0<=dst_y<W:
                 dst_img[dst_y, dst_x, c] = img[src_v, src_u, c]
-                # 當轉換後座標(d_x, d_y)在模板範圍內，取對應原影像座標(s_u, s_v)之像素點
+                # 當轉換後座標(d_x, d_y)在模板範圍內，
+                # 取對應原影像座標(s_u, s_v)之像素點
                 # 若否，則定義該位置像素為0
     dst_img = dst_img.astype(int)  
-    return dst_img     
+    return dst_img    
 ```
 
 ### Image output
