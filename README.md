@@ -60,6 +60,10 @@ GUI介面說明如下：\
 (6) 若有需要，可將(4)的結果再轉換為原坐標系，如下所示：
 ![Imgur](https://i.imgur.com/vrH9hb2.png)
 
+### 操作影片
+[![Imgur](https://i.imgur.com/GZHTlMo.png)](https://youtu.be/VB0ovF0sxiA)
+
+
 ## 程式碼說明
 此處略過GUI設計說明。
 ### Image Input
